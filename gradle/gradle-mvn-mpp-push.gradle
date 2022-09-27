@@ -90,8 +90,9 @@ publishing {
       }
     }
     maven {
-      name 'test'
-      url "file://${rootProject.buildDir}/localMaven"
+      name 'M2'
+      //to /usr/local/kotlinxtras/build/m2
+      url "file://${rootProject.buildDir}/../../../build/m2"
     }
   }
 }

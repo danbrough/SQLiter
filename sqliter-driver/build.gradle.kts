@@ -47,7 +47,9 @@ kotlin {
             tvosSimulatorArm64(),
             mingwX64(),
             mingwX86(),
-            linuxX64()
+            linuxX64(),
+            linuxArm32Hfp(),
+            linuxArm64()
         )
 
     knTargets
@@ -77,7 +79,13 @@ kotlin {
         val linuxMain = sourceSets.maybeCreate("linuxX64Main").apply {
             dependsOn(nativeCommonMain)
         }
-        
+        val linuxArm64Main = sourceSets.maybeCreate("linuxArm64Main").apply {
+          dependsOn(nativeCommonMain)
+        }
+        val linuxArm32HfpMain = sourceSets.maybeCreate("linuxArm32HfpMain").apply {
+          dependsOn(nativeCommonMain)
+        }
+
         val mingwMain = sourceSets.maybeCreate("mingwMain").apply {
             dependsOn(nativeCommonMain)
         }
