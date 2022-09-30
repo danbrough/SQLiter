@@ -49,7 +49,11 @@ kotlin {
             mingwX86(),
             linuxX64(),
             linuxArm32Hfp(),
-            linuxArm64()
+            linuxArm64(),
+            androidNativeX86(),
+            androidNativeX64(),
+            androidNativeArm32(),
+            androidNativeArm64()
         )
 
     knTargets
@@ -86,6 +90,22 @@ kotlin {
           dependsOn(nativeCommonMain)
         }
 
+        val androidNativeX86Main = sourceSets.maybeCreate("androidNativeX86Main").apply {
+          dependsOn(nativeCommonMain)
+        }
+
+        val androidNativeX64Main = sourceSets.maybeCreate("androidNativeX64Main").apply {
+          dependsOn(nativeCommonMain)
+        }
+
+        val androidNativeArm32Main = sourceSets.maybeCreate("androidNativeArm32Main").apply {
+          dependsOn(nativeCommonMain)
+        }
+
+        val androidNativeArm64Main = sourceSets.maybeCreate("androidNativeArm64Main").apply {
+          dependsOn(nativeCommonMain)
+        }
+
         val mingwMain = sourceSets.maybeCreate("mingwMain").apply {
             dependsOn(nativeCommonMain)
         }
@@ -107,6 +127,9 @@ kotlin {
                 target.name.startsWith("linux") -> {
                     target.compilations.getByName("test").defaultSourceSet.dependsOn(nativeCommonTest)
                 }
+              target.name.startsWith("android") -> {
+                target.compilations.getByName("test").defaultSourceSet.dependsOn(nativeCommonTest)
+              }
                 else -> {
                     target.compilations.getByName("main").defaultSourceSet.dependsOn(appleMain)
                     target.compilations.getByName("test").defaultSourceSet.dependsOn(nativeCommonTest)
